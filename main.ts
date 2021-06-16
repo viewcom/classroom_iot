@@ -48,7 +48,7 @@ namespace WiFiBit {
     //% blockId="wfb_connect" block="connect to WiFi:bit"
     export function connectToWiFiBit(): void {
         serial.redirect(
-            SerialPin.P16,
+            SerialPin.P15,
             SerialPin.P8,
             BaudRate.BaudRate115200
         )
