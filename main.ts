@@ -137,9 +137,18 @@ namespace WiFiBit {
   
     
     /** Write Zion Control
-    * @parm value Value, e.g "urlcontrldevice?db=" 
-    * @parm 
+    * @parm host Host, e.g "Host Address" 
+    * @parm urlPath urlPath, e.g "Path"
+    * @Parm devicedb device db, e.g "Device dB"
+    * @Parm deviceid device ID, e.g "Device ID"
+    * @Parm feature Feature, e.g "Feature"
+    * @Parm active Active, e.g "Active"
+    
     **/
+     */
+    //% weight=97
+    //% blockId="api_http" block="host: %host|path: %urlPath||devicedb: %devicedb|deviceid: %deviceid|feature: %feature|active: %active"
+    
     export function writePinValue(host: string,  urlPath: string, devicedb: string, deviceid: string, feature: string, active: string): void {
     executeHttpMethod(
             HttpMethod.POST,
