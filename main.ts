@@ -135,6 +135,49 @@ namespace WiFiBit {
         writeToSerial("AT+CIPCLOSE", pauseBaseValue * 3)
     }
   
+ /**
+     * Execute HTTP method.
+     * @param method HTTP method, eg: HttpMethod.GET
+     * @param host Host, eg: "api.iotgoogle.com
+     * @param urlPath Path, eg: "/search?q=something url"
+     * @param headers Headers
+     * @param body Body
+     */
+    //% weight=96
+    //% blockId="wfb_http" block="execute HTTP method %method|host: %host|path: %urlPath||headers: %headers|body: %body"
+    export function executeHttpMethod(method: HttpMethod, host: string, urlPath: string, headers?: string, body?: string): void {
+        let myMethod: string
+        switch (method) {
+            case HttpMethod.GET: myMethod = "GET"; break;
+            case HttpMethod.POST: myMethod = "POST"; break;
+            case HttpMethod.PUT: myMethod = "PUT"; break;
+            case HttpMethod.HEAD: myMethod = "HEAD"; break;
+            case HttpMethod.DELETE: myMethod = "DELETE"; break;
+            case HttpMethod.PATCH: myMethod = "PATCH"; break;
+            case HttpMethod.OPTIONS: myMethod = "OPTIONS"; break;
+            case HttpMethod.CONNECT: myMethod = "CONNECT"; break;
+            case HttpMethod.TRACE: myMethod = "TRACE";
+        }
+        // Establish TCP connection:
+        let data: string = "AT+CIPSTART=\"TCP\",\"" + host + "\","
+        writeToSerial(data, pauseBaseValue * 6)
+        data = myMethod + " " + urlPath + " HTTP/1.1" + "\u000D" + "\u000A"
+            + "Host: " + host + "\u000D" + "\u000A"
+        if (headers && headers.length > 0) {
+            data += headers + "\u000D" + "\u000A"
+        }
+        if (data && data.length > 0) {
+            data += "\u000D" + "\u000A" + body + "\u000D" + "\u000A"
+        }
+        data += "\u000D" + "\u000A"
+        // Send data:
+        writeToSerial("AT+CIPSEND=" + (data.length + 2), pauseBaseValue * 3)
+        writeToSerial(data, pauseBaseValue * 6)
+        // Close TCP connection:
+        writeToSerial("AT+CIPCLOSE", pauseBaseValue * 3)
+    }    
+    
+    
     
     /** 
     * Write Zion Control.
@@ -146,7 +189,7 @@ namespace WiFiBit {
     * @Parm active Active, e.g "Active"
     */
     //% weight=97
-    //% blockId="api_http" block="host: %host|path: %urlPath|devicedb: %devicedb|deviceid: %deviceid|feature: %feature|active: %active"
+    //% blockId="wfb_http" block="host: %host|path: %urlPath|devicedb: %devicedb|deviceid: %deviceid|feature: %feature|active: %active"
     
     export function writePinValue(host: string, urlPath: string, devicedb: string, deviceid: string, feature: string, active: string): void {
     executeHttpMethod(
