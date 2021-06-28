@@ -97,7 +97,7 @@ namespace WiFiBit {
      * @param method HTTP method, eg: HttpMethod.GET
      * @param host Host, eg: "google.com"
      * @param port Port, eg: 80
-     * @param urlPath Path, eg: "/search?q=something"
+     * @param urlPath Path, eg: "/search?q=something url"
      * @param headers Headers
      * @param body Body
      */
