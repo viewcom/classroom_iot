@@ -134,7 +134,21 @@ namespace WiFiBit {
         // Close TCP connection:
         writeToSerial("AT+CIPCLOSE", pauseBaseValue * 3)
     }
-
+  
+    
+    /** Write Zion Control
+    * @parm value Value, e.g "urlcontrldevice?db=" 
+    * @parm 
+    **/
+    export function writePinValue(host: string,  urlPath: string, devicedb: string, deviceid: string, feature: string, active: string): void {
+    executeHttpMethod(
+            HttpMethod.POST,
+            host + urlPath + devicedb + deviceid + feature + active
+             
+        )
+    }
+    
+    
     /**
      * Write Blynk pin value.
      * @param value Value, eg: "510"
