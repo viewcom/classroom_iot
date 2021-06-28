@@ -143,9 +143,7 @@ namespace WiFiBit {
     * @Parm deviceid device ID, e.g "Device ID"
     * @Parm feature Feature, e.g "Feature"
     * @Parm active Active, e.g "Active"
-    
-    **/
-     */
+    */
     //% weight=97
     //% blockId="api_http" block="host: %host|path: %urlPath||devicedb: %devicedb|deviceid: %deviceid|feature: %feature|active: %active"
     
