@@ -148,7 +148,7 @@ namespace WiFiBit {
     //% weight=97
     //% blockId="api_http" block="host: %host|path: %urlPath|devicedb: %devicedb|deviceid: %deviceid|feature: %feature|active: %active"
     
-    export function writePinValue(host: string,  urlPath: string, devicedb: string, deviceid: string, feature: string, active: string): void {
+    export function writePinValue(host: string, urlPath: string, devicedb: string, deviceid: string, feature: string, active: string): void {
     executeHttpMethod(
             HttpMethod.POST,
             host + urlPath + devicedb + deviceid + feature + active
